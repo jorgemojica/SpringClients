@@ -25,15 +25,19 @@ public class Cliente {
 	@Column(name = "edad")
 	private String edad;
 
+	@Column(name = "estado")
+	private boolean estado;
+
 	public Cliente() {
 
 	}
 
-	public Cliente(Long id, String nombre, String telefono, String edad) {
+	public Cliente(Long id, String nombre, String telefono, String edad, boolean estado) {
 		this.id = id;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.edad = edad;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -66,6 +70,14 @@ public class Cliente {
 
 	public void setEdad(String edad) {
 		this.edad = edad;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 }

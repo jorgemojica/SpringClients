@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.entity.Cliente;
 import com.example.demo.service.ClienteService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api/clientes")
 public class ClienteController {
@@ -54,10 +54,10 @@ public class ClienteController {
 		clienteService.eliminarCliente(id);
 		return ResponseEntity.ok("Cliente eliminado correctamente");
 	}
-	
-	@PutMapping
-	public ResponseEntity<Cliente> actualizarCliente(@RequestBody Cliente cliente){
-		Cliente clienteActualizar = clienteService.actualizarCliente(cliente);
+
+	@PutMapping(value = "{id}")
+	public ResponseEntity<Cliente> actualizarCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
+		Cliente clienteActualizar = clienteService.actualizarCliente(id, cliente);
 		return ResponseEntity.ok(clienteActualizar);
 	}
 
